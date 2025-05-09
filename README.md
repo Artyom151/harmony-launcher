@@ -1,3 +1,5 @@
+![image](https://github.com/user-attachments/assets/f778ccd4-e18c-4ebb-bddf-39d57106e9fb)
+
 # Harmony Launcher
 
 Современный лаунчер для Minecraft с красивым интерфейсом и удобным функционалом.
