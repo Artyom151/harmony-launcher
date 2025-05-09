@@ -1,0 +1,27 @@
+{
+  "name": "harmony-launcher",
+  "version": "2.5.1",
+  "description": "Harmony Launcher - Modern Minecraft Launcher",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/harmony-launcher"
+  },
+  "author": "Harmony Team",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^28.0.0",
+    "electron-store": "^8.1.0",
+    "electron-updater": "^5.3.0",
+    "minecraft-launcher-lib": "^19.3.0",
+    "fs-extra": "^11.1.1",
+    "node-fetch": "^2.6.9"
+  },
+  "devDependencies": {
+    "electron-builder": "^24.0.0"
+  }
+}

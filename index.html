@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Harmony Launcher</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="titlebar">
+        <div class="titlebar-logo">
+            <div class="logo-container">
+                <i class="fas font-awesome logo-icon"></i>
+                <span class="logo-text">HARMONY LAUNCHER</span>
+            </div>
+        </div>
+        <div class="titlebar-controls">
+            <button id="minimize-btn"><i class="fas fa-minus"></i></button>
+            <button id="maximize-btn"><i class="fas fa-square"></i></button>
+            <button id="close-btn"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div class="profile">
+            <div class="profile-header">
+                <img src="https://mc-heads.net/avatar/385" alt="Skin" class="profile-avatar">
+                <div class="profile-info">
+                    <input type="text" class="username-input" placeholder="Введите ник" maxlength="16">
+                </div>
+            </div>
+        </div>
+        <div class="version-selector">
+            <button class="version-btn">
+                <i class="fas fa-gamepad"></i>
+                <span>Выберите версию</span>
+            </button>
+            <div class="versions">
+                <!-- Versions will be populated by JavaScript -->
+            </div>
+        </div>
+        <button class="play-btn">
+            <i class="fas fa-play"></i>
+            <span>Играть</span>
+        </button>
+        <div class="progress-container">
+            <div class="progress-bar-wrapper">
+                <div class="progress-bar"></div>
+            </div>
+            <span class="progress-text"></span>
+        </div>
+        <div class="launcher-info">
+            <div class="ram-selector">
+                <label>Память (RAM)</label>
+                <div class="ram-controls">
+                    <button class="ram-btn active" data-ram="4">4GB</button>
+                    <button class="ram-btn" data-ram="8">8GB</button>
+                    <button class="ram-btn" data-ram="16">16GB</button>
+                </div>
+            </div>
+        </div>
+        <button class="settings-btn">
+            <i class="fas fa-cog"></i>
+            <span>Настройки</span>
+        </button>
+    </div>
+
+    <!-- Модальное окно настроек -->
+    <div class="settings-modal" id="settingsModal">
+        <div class="settings-content">
+            <div class="settings-header">
+                <h2><i class="fas fa-cog"></i> Настройки</h2>
+                <button class="close-settings"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="settings-body">
+                <div class="settings-section">
+                    <h3>Тема оформления</h3>
+                    <div class="theme-selector">
+                        <button class="theme-btn" data-theme="default">
+                            <div class="theme-preview default"></div>
+                            <span>Ночной</span>
+                        </button>
+                        <button class="theme-btn" data-theme="emerald">
+                            <div class="theme-preview emerald"></div>
+                            <span>Изумрудный</span>
+                        </button>
+                        <button class="theme-btn" data-theme="ruby">
+                            <div class="theme-preview ruby"></div>
+                            <span>Рубиновый</span>
+                        </button>
+                        <button class="theme-btn" data-theme="sapphire">
+                            <div class="theme-preview sapphire"></div>
+                            <span>Сапфировый</span>
+                        </button>
+                        <button class="theme-btn active" data-theme="amethyst">
+                            <div class="theme-preview amethyst"></div>
+                            <span>Аметистовый</span>
+                        </button>
+                        <button class="theme-btn" data-theme="turquoise">
+                            <div class="theme-preview turquoise"></div>
+                            <span>Бирюзовый</span>
+                        </button>
+                        <button class="theme-btn" data-theme="sunset">
+                            <div class="theme-preview sunset"></div>
+                            <span>Закатный</span>
+                        </button>
+                        <button class="theme-btn" data-theme="ocean">
+                            <div class="theme-preview ocean"></div>
+                            <span>Океанский</span>
+                        </button>
+                        <button class="theme-btn" data-theme="cosmic">
+                            <div class="theme-preview cosmic"></div>
+                            <span>Космический</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-section">
+                    <h3>Анимации</h3>
+                    <div class="toggle-setting">
+                        <label class="toggle">
+                            <input type="checkbox" id="enableAnimations" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <span>Включить анимации интерфейса</span>
+                    </div>
+                </div>
+                <div class="settings-section">
+                    <h3>Уведомления</h3>
+                    <div class="toggle-setting">
+                        <label class="toggle">
+                            <input type="checkbox" id="enableNotifications" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <span>Показывать уведомления</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="content-header">
+            <h1><i class="fas fa-newspaper"></i> Новости</h1>
+        </div>
+        <div class="news-container">
+            <div class="news-card">
+                <div class="news-image" style="background-image: url('./images/may.jpg');">
+                    <div class="news-overlay">
+                        <span class="news-date">09.05.2025</span>
+                        <h3>С днём Победы!</h3>
+                        <p class="news-excerpt">С праздником Победы! Мы поздравляем всех наших пользователей с праздником Победы! Пусть мир будет мирным и счастливым!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-image" style="background-image: url('./images/update.jpg');">
+                    <div class="news-overlay">
+                        <span class="news-date">09.05.2025</span>
+                        <h3>Обновление 2.5.1</h3>
+                        <p class="news-excerpt">Обновление 2.5.1, полнейший редизайн и перенос на совсем иной язык программирования.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-header">
+            <h2><i class="fas fa-server"></i> Рекомендуемые сервера</h2>
+        </div>
+        <p class="servers-description">Наша команда специально подобрала для Вас проверенные проекты, где вас не обманут на донат и вам будет комфортно играть.</p>
+        <div class="servers-container">
+            <div class="server-card">
+                <div class="server-banner" style="background-image: url('./assets/images/hollyworld_banner.png')">
+                    <div class="server-status online">
+                        <span class="status-dot"></span>
+                        Онлайн: N/A
+                    </div>
+                </div>
+                <div class="server-info">
+                    <h3>HolyWorld</h3>
+                    <p class="ip">hub.holyworld.ru</p>
+                    <p class="version">Версия: 1.16 - 1.21</p>
+                    <div class="server-stats">
+                        <span><i class="fas fa-signal"></i> 99%</span>
+                    </div>
+                    <button class="connect-btn">
+                        <i class="fas fa-play"></i>
+                        Подключиться (пока не работает)
+                    </button>
+                </div>
+            </div>
+            <div class="server-card">
+                <div class="server-banner" style="background-image: url('./assets/images/funtime_banner.png')">
+                    <div class="server-status online">
+                        <span class="status-dot"></span>
+                        Онлайн: N/A
+                    </div>
+                </div>
+                <div class="server-info">
+                    <h3>FunTime</h3>
+                    <p class="ip">play.funtime.su</p>
+                    <p class="version">Версия: 1.16 - 1.21</p>
+                    <div class="server-stats">
+                        <span><i class="fas fa-signal"></i> 99%</span>
+                    </div>
+                    <button class="connect-btn">
+                        <i class="fas fa-play"></i>
+                        Подключиться (пока не работает)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="social-sidebar">
+        <a href="https://t.me/harmony_launcher" class="social-btn telegram" data-tooltip="Telegram">
+            <i class="fab fa-telegram-plane"></i>
+        </a>
+        <a href="https://www.youtube.com/@harmony-dev-ofc" class="social-btn youtube" data-tooltip="YouTube">
+            <i class="fab fa-youtube"></i>
+        </a>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html> 
