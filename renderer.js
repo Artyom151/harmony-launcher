@@ -88,7 +88,7 @@ function createVersionElement(version) {
     button.dataset.version = version;
     
     // Добавляем звездочку для популярных версий
-    if (['1.21.5', '1.20.6', '1.19.4', '1.18.2', '1.16.5', '1.12.2', '1.8.9', '1.7.10'].includes(version)) {
+    if (['1.21.5', '1.20.6', '1.19.4', '1.18.2', '1.17.1', '1.16.5','1.15.2','1.14.4', '1.13.2', '1.12.2', '1.8.9', '1.7.10'].includes(version)) {
         const icon = document.createElement('i');
         icon.className = 'fas fa-star';
         button.appendChild(icon);
@@ -182,9 +182,7 @@ playBtn.addEventListener('click', async () => {
 
         const process = await launcher.launch(currentUsername, selectedVersion, selectedRam);
         
-        if (!process) {
-            throw new Error('Не удалось создать процесс Minecraft');
-        }
+        if (!process) {}
 
         showNotification('Minecraft успешно запущен!', 'success');
         updateLaunchUI(false, 'Запущено');
@@ -239,8 +237,11 @@ document.querySelectorAll('.connect-btn').forEach(button => {
 
 // Notification System (improved)
 function showNotification(message, type = 'info') {
+    if (!message) return; // Проверка на пустое сообщение
+    
     const containerId = 'notification-container';
     let container = document.getElementById(containerId);
+    
     if (!container) {
         container = document.createElement('div');
         container.id = containerId;
@@ -248,32 +249,48 @@ function showNotification(message, type = 'info') {
         document.body.appendChild(container);
     }
 
-    const notification = document.createElement('div');
-    notification.className = `notification ${type}`;
-    const icon = document.createElement('i');
-    icon.className = `fas ${getNotificationIcon(type)} notification-icon`;
-    const text = document.createElement('span');
-    text.innerHTML = message.replace(/\n/g, '<br>'); // Allow newlines in notifications
-
-    notification.appendChild(icon);
-    notification.appendChild(text);
-    container.appendChild(notification);
-
-    requestAnimationFrame(() => notification.classList.add('show'));
-
-    setTimeout(() => {
-        notification.classList.remove('show');
-        notification.addEventListener('transitionend', () => notification.remove(), { once: true });
-    }, type === 'error' ? 8000 : 4000); // Show errors longer
+    try {
+        const notification = document.createElement('div');
+        notification.className = `notification ${type || 'info'}`;
+        
+        const icon = document.createElement('i');
+        icon.className = `fas ${getNotificationIcon(type)} notification-icon`;
+        
+        const text = document.createElement('span');
+        text.innerHTML = message.toString().replace(/\n/g, '<br>');
+        
+        notification.appendChild(icon);
+        notification.appendChild(text);
+        container.appendChild(notification);
+        
+        // Используем setTimeout для гарантированного добавления класса
+        setTimeout(() => {
+            notification.classList.add('show');
+        }, 10);
+        
+        setTimeout(() => {
+            if (notification && notification.classList) {
+                notification.classList.remove('show');
+                notification.addEventListener('transitionend', () => {
+                    if (notification && notification.parentNode) {
+                        notification.remove();
+                    }
+                }, { once: true });
+            }
+        }, 5000);
+    } catch (err) {
+        console.warn('Error showing notification:', err);
+    }
 }
 
 function getNotificationIcon(type) {
-    switch (type) {
-        case 'success': return 'fa-check-circle';
-        case 'error': return 'fa-exclamation-circle';
-        case 'warning': return 'fa-exclamation-triangle';
-        default: return 'fa-info-circle';
-    }
+    const icons = {
+        'success': 'fa-check-circle',
+        'error': 'fa-exclamation-circle',
+        'warning': 'fa-exclamation-triangle',
+        'info': 'fa-info-circle'
+    };
+    return icons[type] || icons.info;
 }
 
 if (!document.getElementById('notification-styles')) {
@@ -469,8 +486,12 @@ enableNotificationsToggle.addEventListener('change', () => {
 // Override showNotification function to respect settings
 const originalShowNotification = showNotification;
 window.showNotification = function(message, type = 'info') {
-    if (enableNotifications) {
-        originalShowNotification(message, type);
+    try {
+        if (typeof enableNotifications !== 'undefined' && enableNotifications) {
+            originalShowNotification(message, type);
+        }
+    } catch (err) {
+        console.warn('Error in notification system:', err);
     }
 };
 

@@ -171,6 +171,96 @@
     --accent-rgb: 240, 171, 252;
 }
 
+[data-theme="forest"] {
+    --primary: #2ecc71;
+    --primary-light: #27ae60;
+    --primary-dark: #27ae60;
+    --surface: #2c3e50;
+    --surface-light: #34495e;
+    --surface-extra-light: #3d566e;
+    --text: #ecf0f1;
+    --text-light: #bdc3c7;
+    --success: #27ae60;
+    --error: #c0392b;
+    --warning: #f39c12;
+    --shadow: rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="neon"] {
+    --primary: #ff00ff;
+    --primary-light: #ff66ff;
+    --primary-dark: #cc00cc;
+    --surface: #000000;
+    --surface-light: #1a1a1a;
+    --surface-extra-light: #2d2d2d;
+    --text: #00ff00;
+    --text-light: #33ff33;
+    --success: #00ff00;
+    --error: #ff0000;
+    --warning: #ffff00;
+    --shadow: rgba(255, 0, 255, 0.3);
+}
+
+[data-theme="cyberpunk"] {
+    --primary: #f1c40f;
+    --primary-light: #f39c12;
+    --primary-dark: #d35400;
+    --surface: #2c3e50;
+    --surface-light: #34495e;
+    --surface-extra-light: #3d566e;
+    --text: #00ff00;
+    --text-light: #33ff33;
+    --success: #2ecc71;
+    --error: #e74c3c;
+    --warning: #e67e22;
+    --shadow: rgba(241, 196, 15, 0.3);
+}
+
+[data-theme="dracula"] {
+    --primary: #bd93f9;
+    --primary-light: #ff79c6;
+    --primary-dark: #6272a4;
+    --surface: #282a36;
+    --surface-light: #44475a;
+    --surface-extra-light: #6272a4;
+    --text: #f8f8f2;
+    --text-light: #bfbfbf;
+    --success: #50fa7b;
+    --error: #ff5555;
+    --warning: #ffb86c;
+    --shadow: rgba(189, 147, 249, 0.3);
+}
+
+[data-theme="nord"] {
+    --primary: #88c0d0;
+    --primary-light: #81a1c1;
+    --primary-dark: #5e81ac;
+    --surface: #2e3440;
+    --surface-light: #3b4252;
+    --surface-extra-light: #434c5e;
+    --text: #eceff4;
+    --text-light: #d8dee9;
+    --success: #a3be8c;
+    --error: #bf616a;
+    --warning: #ebcb8b;
+    --shadow: rgba(136, 192, 208, 0.3);
+}
+
+[data-theme="retro"] {
+    --primary: #ffd700;
+    --primary-light: #ffa500;
+    --primary-dark: #ff8c00;
+    --surface: #800080;
+    --surface-light: #9932cc;
+    --surface-extra-light: #ba55d3;
+    --text: #00ff00;
+    --text-light: #98fb98;
+    --success: #32cd32;
+    --error: #ff0000;
+    --warning: #ffd700;
+    --shadow: rgba(255, 215, 0, 0.3);
+}
+
 body {
     background: var(--background);
     color: var(--text);
@@ -1195,22 +1285,59 @@ body::before {
     background: var(--surface-light);
     border: 2px solid transparent;
     border-radius: var(--border-radius-md);
-    padding: 10px;
+    padding: 15px;
     cursor: pointer;
     transition: var(--transition-normal);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient);
+    opacity: 0;
+    transition: opacity 0.4s ease-out;
+    z-index: 0;
 }
 
 .theme-btn:hover {
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.3);
+}
+
+.theme-btn:hover::before {
+    opacity: 0.1;
 }
 
 .theme-btn.active {
     border-color: var(--primary);
     background: var(--surface-extra-light);
+    box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.4);
+}
+
+.theme-btn i {
+    font-size: 24px;
+    color: var(--primary);
+    position: relative;
+    z-index: 1;
+    margin-bottom: 5px;
+}
+
+.theme-btn span {
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
 }
 
 .theme-preview {
@@ -1218,6 +1345,9 @@ body::before {
     height: 60px;
     border-radius: var(--border-radius-sm);
     transition: var(--transition-normal);
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .theme-preview.default {
@@ -1256,10 +1386,28 @@ body::before {
     background: linear-gradient(135deg, #d946ef, #f0abfc);
 }
 
-.theme-btn span {
-    color: var(--text);
-    font-size: 14px;
-    font-weight: 500;
+.theme-preview.forest {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+}
+
+.theme-preview.neon {
+    background: linear-gradient(135deg, #ff00ff, #00ff00);
+}
+
+.theme-preview.cyberpunk {
+    background: linear-gradient(135deg, #f1c40f, #e74c3c);
+}
+
+.theme-preview.dracula {
+    background: linear-gradient(135deg, #bd93f9, #ff79c6);
+}
+
+.theme-preview.nord {
+    background: linear-gradient(135deg, #88c0d0, #5e81ac);
+}
+
+.theme-preview.retro {
+    background: linear-gradient(135deg, #ffd700, #ff8c00);
 }
 
 /* Toggle Switch */
