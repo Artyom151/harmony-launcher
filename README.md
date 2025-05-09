@@ -16,9 +16,10 @@
 ## Установка
 
 1. Убедитесь, что у вас установлен 
-[Node.js](https://nodejs.org/) (версия 14 или выше)
-[Python](https://python.org/) (версии 3.9 или выше)
-[Java](https://www.java.com/ru/download/) (желательно 8)
+
+- [Node.js](https://nodejs.org/) (версия 14 или выше)
+- [Python](https://python.org/) (версии 3.9 или выше)
+- [Java](https://www.java.com/ru/download/) (желательно 8)
 
 2. Склонируйте репозиторий:
 ```bash
