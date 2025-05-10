@@ -163,13 +163,133 @@
         </div>
     </div>
 
+    <!-- Модальное окно конструктора тем -->
+    <div id="themeConstructorModal" class="theme-constructor-modal">
+        <div class="theme-constructor-container">
+            <div class="theme-constructor-header">
+                <h2><i class="fas fa-paint-brush"></i> Конструктор тем</h2>
+                <button class="close-constructor"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="theme-constructor-content">
+                <div class="theme-preview-window">
+                    <div class="theme-preview-header">
+                        <div class="theme-preview-title">
+                            <i class="fas fa-cube"></i> Harmony Launcher
+                        </div>
+                        <div class="theme-preview-buttons">
+                            <div class="theme-preview-button theme-preview-minimize"></div>
+                            <div class="theme-preview-button theme-preview-maximize"></div>
+                            <div class="theme-preview-button theme-preview-close"></div>
+                        </div>
+                    </div>
+                    <div class="theme-preview-content">
+                        <div class="theme-preview-sidebar">
+                            <div class="theme-preview-sidebar-item active">
+                                <i class="fas fa-home"></i> Главная
+                            </div>
+                            <div class="theme-preview-sidebar-item">
+                                <i class="fas fa-gamepad"></i> Игры
+                            </div>
+                            <div class="theme-preview-sidebar-item">
+                                <i class="fas fa-cog"></i> Настройки
+                            </div>
+                            <div class="theme-preview-sidebar-item">
+                                <i class="fas fa-trophy"></i> Достижения
+                            </div>
+                            <div class="theme-preview-sidebar-item">
+                                <i class="fas fa-palette"></i> Темы
+                            </div>
+                        </div>
+                        <div class="theme-preview-main">
+                            <div class="theme-preview-card">
+                                <h3>Добро пожаловать в Harmony Launcher</h3>
+                                <p>Это предварительный просмотр вашей темы.</p>
+                                <button class="theme-preview-button-primary">Основная кнопка</button>
+                                <button class="theme-preview-button-accent">Акцентная кнопка</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="theme-controls">
+                    <div class="theme-control-group">
+                        <h3><i class="fas fa-fill-drip"></i> Основные цвета</h3>
+                        <div class="control-row">
+                            <label for="primaryColor">Основной цвет</label>
+                            <input type="color" id="primaryColor" data-var="--primary">
+                        </div>
+                        <div class="control-row">
+                            <label for="accentColor">Акцентный цвет</label>
+                            <input type="color" id="accentColor" data-var="--accent">
+                        </div>
+                        <div class="control-row">
+                            <label for="backgroundColor">Фон</label>
+                            <input type="color" id="backgroundColor" data-var="--background">
+                        </div>
+                        <div class="control-row">
+                            <label for="surfaceColor">Поверхность</label>
+                            <input type="color" id="surfaceColor" data-var="--surface">
+                        </div>
+                        <div class="control-row">
+                            <label for="textColor">Текст</label>
+                            <input type="color" id="textColor" data-var="--text">
+                        </div>
+                    </div>
+                    <div class="theme-control-group">
+                        <h3><i class="fas fa-sliders-h"></i> Настройки</h3>
+                        <div class="control-row">
+                            <label for="themeName">Название темы</label>
+                            <input type="text" id="themeName" placeholder="Моя тема">
+                        </div>
+                        <div class="control-row">
+                            <label for="borderRadius">Скругление углов</label>
+                            <div class="range-control">
+                                <input type="range" id="borderRadius" class="range-slider" min="0" max="20" value="8">
+                                <div class="range-value"><span id="borderRadiusValue">8</span>px</div>
+                            </div>
+                        </div>
+                        <div class="control-row">
+                            <label for="transparency">Прозрачность</label>
+                            <div class="range-control">
+                                <input type="range" id="transparency" class="range-slider" min="70" max="100" value="95">
+                                <div class="range-value"><span id="transparencyValue">95</span>%</div>
+                            </div>
+                        </div>
+                        <div class="theme-action-buttons">
+                            <button class="save-theme-btn"><i class="fas fa-save"></i> Сохранить</button>
+                            <button class="export-theme-btn"><i class="fas fa-file-export"></i> Экспорт</button>
+                            <button class="import-theme-btn"><i class="fas fa-file-import"></i> Импорт</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="main-content">
         <div class="content-header">
             <h1><i class="fas fa-newspaper"></i> Новости</h1>
         </div>
         <div class="news-container">
             <div class="news-card">
-                <div class="news-image" style="background-image: url('./images/may.jpg');">
+                <div class="news-image" style="background-image: url('./assets/images/youtube.jpg');">
+                    <div class="news-overlay">
+                        <span class="news-date">10.05.2025</span>
+                        <h3>Создание канала на YouTube!</h3>
+                        <p class="news-excerpt">Я создал канал на YouTube, где буду выкладывать всякие видео и новости о нашем проекте. <a href="https://www.youtube.com/@harmony-dev-ofc">Ссылка на канал</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-image" style="background-image: url('./assets/images/update.jpg');">
+                    <div class="news-overlay">
+                        <span class="news-date">10.05.2025</span>
+                        <h3>Обновление 2.5.3</h3>
+                        <p class="news-excerpt">Обновление 2.5.3, полнейший редизайн и перенос на совсем иной язык программирования.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-image" style="background-image: url('./assets/images/may.jpg');">
                     <div class="news-overlay">
                         <span class="news-date">09.05.2025</span>
                         <h3>С днём Победы!</h3>
@@ -178,7 +298,7 @@
                 </div>
             </div>
             <div class="news-card">
-                <div class="news-image" style="background-image: url('./images/update.jpg');">
+                <div class="news-image" style="background-image: url('./assets/images/update.jpg');">
                     <div class="news-overlay">
                         <span class="news-date">09.05.2025</span>
                         <h3>Обновление 2.5.1</h3>

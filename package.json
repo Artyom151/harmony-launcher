@@ -1,6 +1,6 @@
 {
   "name": "harmony-launcher",
-  "version": "2.5.2",
+  "version": "2.5.3",
   "description": "Harmony Launcher - Modern Minecraft Launcher",
   "main": "main.js",
   "scripts": {
